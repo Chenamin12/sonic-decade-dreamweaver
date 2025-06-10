@@ -100,7 +100,7 @@
   /* Enhanced 3D Glassmorphism Cards */
   .glass-card-3d {
     @apply relative bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl;
-    @apply hover:bg-white/10 hover:shadow-3xl transition-all duration-500;
+    @apply hover:bg-white/10 hover:shadow-2xl transition-all duration-500;
     @apply before:content-[''] before:absolute before:inset-0 before:rounded-3xl;
     @apply before:bg-gradient-to-br before:from-white/15 before:via-white/5 before:to-transparent before:pointer-events-none;
     transform: perspective(1000px) rotateX(2deg);
@@ -112,6 +112,10 @@
 
   .glass-card-3d:hover {
     transform: perspective(1000px) rotateX(0deg) translateY(-5px);
+    box-shadow: 
+      0 35px 60px -12px rgba(0, 0, 0, 0.35),
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
   }
 
   /* Enhanced 3D Glass Input Fields */
