@@ -1,13 +1,12 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Music, Headphones, Sparkles } from "lucide-react";
+import { Music, Headphones, Sparkles, Wand2 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
-import SongGenerator from "@/components/SongGenerator";
 
 const Index = () => {
   const [prompt, setPrompt] = useState("");
@@ -155,91 +154,106 @@ Genre: ${selectedGenre} | Era: ${selectedDecade}`;
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-amber-50/80 via-orange-50/60 to-red-50/40">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-amber-100/20 via-transparent to-blue-100/20"></div>
-      <div className="absolute top-20 left-20 w-64 h-64 bg-purple-200/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-20 w-80 h-80 bg-blue-200/10 rounded-full blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-pink-200/10 rounded-full blur-2xl"></div>
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-pink-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-purple-400/10 rounded-full blur-2xl animate-pulse delay-500"></div>
+        <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-cyan-400/20 rounded-full blur-xl"></div>
+        <div className="absolute bottom-1/3 left-1/2 w-40 h-40 bg-yellow-400/10 rounded-full blur-2xl"></div>
+      </div>
       
       <div className="relative z-10 p-6 md:p-8">
-        <div className="max-w-6xl mx-auto space-y-8">
+        <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center space-y-6 mb-12">
-            <div className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-md rounded-full border border-white/30 shadow-lg">
-              <Music className="h-6 w-6 text-purple-600" />
-              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                AI Song Generator
+          <div className="text-center space-y-8 mb-16">
+            <div className="space-y-4">
+              <h1 className="text-6xl md:text-7xl font-thin text-white tracking-tight">
+                Artist creation,
               </h1>
-              <Headphones className="h-6 w-6 text-blue-600" />
+              <h2 className="text-6xl md:text-7xl font-bold text-white tracking-tight">
+                with AI On artist
+              </h2>
             </div>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              Create unique songs with AI-powered generation based on your prompts, keywords, genre, and era
+            <p className="text-xl text-white/80 max-w-2xl mx-auto font-light leading-relaxed">
+              Transform your creative vision into unique songs with AI-powered generation. 
+              Simply describe your concept and watch it come to life.
             </p>
+            <div className="flex items-center justify-center gap-4 pt-4">
+              <Button className="glass-button-3d px-8 py-3 text-lg font-medium">
+                <Wand2 className="h-5 w-5 mr-2" />
+                Start Creating
+              </Button>
+              <Button variant="outline" className="glass-button-secondary-3d px-8 py-3 text-lg font-light">
+                Learn More
+              </Button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-            {/* Input Card */}
-            <div className="glass-card group">
-              <div className="p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg">
-                    <Sparkles className="h-5 w-5 text-white" />
+          {/* Main Content */}
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* Input Section */}
+            <div className="glass-card-3d group">
+              <div className="p-8">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl">
+                    <Sparkles className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-semibold text-gray-900">Song Input</h2>
-                    <p className="text-sm text-gray-600">Describe your song concept and preferences</p>
+                    <h3 className="text-2xl font-bold text-white">Song Input</h3>
+                    <p className="text-white/70 font-light">Describe your song concept</p>
                   </div>
                 </div>
 
                 <div className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="prompt" className="text-sm font-medium text-gray-700">Song Prompt</Label>
+                  <div className="space-y-3">
+                    <Label htmlFor="prompt" className="text-white font-medium">Song Prompt</Label>
                     <Textarea
                       id="prompt"
                       placeholder="Describe your song concept, story, or theme..."
                       value={prompt}
                       onChange={(e) => handlePromptChange(e.target.value)}
-                      rows={3}
-                      className="glass-input"
+                      rows={4}
+                      className="glass-input-3d text-white placeholder:text-white/50"
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="keywords" className="text-sm font-medium text-gray-700">Extracted Keywords</Label>
+                  <div className="space-y-3">
+                    <Label htmlFor="keywords" className="text-white font-medium">Keywords</Label>
                     <Input
                       id="keywords"
                       placeholder="Keywords will be extracted automatically..."
                       value={keywords}
                       onChange={(e) => setKeywords(e.target.value)}
-                      className="glass-input"
+                      className="glass-input-3d text-white placeholder:text-white/50"
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-gray-700">Genre</Label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="space-y-3">
+                      <Label className="text-white font-medium">Genre</Label>
                       <Select value={genre} onValueChange={setGenre}>
-                        <SelectTrigger className="glass-input">
-                          <SelectValue placeholder="Select genre" />
+                        <SelectTrigger className="glass-input-3d text-white">
+                          <SelectValue placeholder="Select genre" className="text-white/50" />
                         </SelectTrigger>
-                        <SelectContent className="glass-dropdown">
+                        <SelectContent className="glass-dropdown-3d">
                           {genres.map((g) => (
-                            <SelectItem key={g} value={g}>{g}</SelectItem>
+                            <SelectItem key={g} value={g} className="text-white">{g}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                     </div>
 
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-gray-700">Decade</Label>
+                    <div className="space-y-3">
+                      <Label className="text-white font-medium">Decade</Label>
                       <Select value={decade} onValueChange={setDecade}>
-                        <SelectTrigger className="glass-input">
-                          <SelectValue placeholder="Select decade" />
+                        <SelectTrigger className="glass-input-3d text-white">
+                          <SelectValue placeholder="Select decade" className="text-white/50" />
                         </SelectTrigger>
-                        <SelectContent className="glass-dropdown">
+                        <SelectContent className="glass-dropdown-3d">
                           {decades.map((d) => (
-                            <SelectItem key={d} value={d}>{d}</SelectItem>
+                            <SelectItem key={d} value={d} className="text-white">{d}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -249,17 +263,17 @@ Genre: ${selectedGenre} | Era: ${selectedDecade}`;
                   <Button 
                     onClick={generateSong} 
                     disabled={isGenerating} 
-                    className="w-full glass-button"
+                    className="w-full glass-button-3d py-4 text-lg font-medium"
                     size="lg"
                   >
                     {isGenerating ? (
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                         Generating Song...
                       </div>
                     ) : (
-                      <div className="flex items-center gap-2">
-                        <Music className="h-4 w-4" />
+                      <div className="flex items-center gap-3">
+                        <Music className="h-5 w-5" />
                         Generate Song
                       </div>
                     )}
@@ -268,27 +282,27 @@ Genre: ${selectedGenre} | Era: ${selectedDecade}`;
               </div>
             </div>
 
-            {/* Output Card */}
-            <div className="glass-card group">
-              <div className="p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg">
-                    <Music className="h-5 w-5 text-white" />
+            {/* Output Section */}
+            <div className="glass-card-3d group">
+              <div className="p-8">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="p-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl">
+                    <Music className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-semibold text-gray-900">Generated Song</h2>
-                    <p className="text-sm text-gray-600">Your AI-generated song will appear here</p>
+                    <h3 className="text-2xl font-bold text-white">Generated Song</h3>
+                    <p className="text-white/70 font-light">Your AI-generated song</p>
                   </div>
                 </div>
 
                 {generatedSong ? (
-                  <div className="space-y-4">
-                    <div className="glass-content">
-                      <pre className="whitespace-pre-wrap text-sm text-gray-800 leading-relaxed">
+                  <div className="space-y-6">
+                    <div className="glass-content-3d">
+                      <pre className="whitespace-pre-wrap text-sm text-white/90 leading-relaxed font-light">
                         {generatedSong}
                       </pre>
                     </div>
-                    <Button variant="outline" className="w-full glass-button-secondary">
+                    <Button variant="outline" className="w-full glass-button-secondary-3d py-3 font-medium">
                       <div className="flex items-center gap-2">
                         <Sparkles className="h-4 w-4" />
                         Share Song
@@ -296,11 +310,11 @@ Genre: ${selectedGenre} | Era: ${selectedDecade}`;
                     </Button>
                   </div>
                 ) : (
-                  <div className="glass-content text-center py-16">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-100 to-blue-100 rounded-full flex items-center justify-center">
-                      <Music className="h-8 w-8 text-purple-400" />
+                  <div className="glass-content-3d text-center py-20">
+                    <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10">
+                      <Music className="h-10 w-10 text-white/60" />
                     </div>
-                    <p className="text-gray-500">Your generated song will appear here...</p>
+                    <p className="text-white/60 text-lg font-light">Your generated song will appear here...</p>
                   </div>
                 )}
               </div>
