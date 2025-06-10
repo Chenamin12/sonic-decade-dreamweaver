@@ -167,7 +167,7 @@ Genre: ${selectedGenre} | Era: ${selectedDecade}`;
       <div className="relative z-10 p-6 md:p-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center space-y-8 mb-16">
+          <div className="text-center space-y-8 mb-16 group">
             <div className="space-y-4">
               <h1 className="text-6xl md:text-7xl font-thin text-white tracking-tight">
                 Artist creation,
@@ -185,7 +185,10 @@ Genre: ${selectedGenre} | Era: ${selectedDecade}`;
                 <Wand2 className="h-5 w-5 mr-2" />
                 Start Creating
               </Button>
-              <Button variant="outline" className="glass-button-secondary-3d px-8 py-3 text-lg font-light">
+              <Button 
+                variant="outline" 
+                className="glass-button-secondary-3d px-8 py-3 text-lg font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
                 Learn More
               </Button>
             </div>
@@ -215,7 +218,7 @@ Genre: ${selectedGenre} | Era: ${selectedDecade}`;
                       value={prompt}
                       onChange={(e) => handlePromptChange(e.target.value)}
                       rows={4}
-                      className="glass-input-3d text-white placeholder:text-white/50"
+                      className="glass-input-3d text-white placeholder:text-white/50 bg-white/10 backdrop-blur-md border-white/20"
                     />
                   </div>
 
@@ -226,7 +229,7 @@ Genre: ${selectedGenre} | Era: ${selectedDecade}`;
                       placeholder="Keywords will be extracted automatically..."
                       value={keywords}
                       onChange={(e) => setKeywords(e.target.value)}
-                      className="glass-input-3d text-white placeholder:text-white/50"
+                      className="glass-input-3d text-white placeholder:text-white/50 bg-white/10 backdrop-blur-md border-white/20"
                     />
                   </div>
 
@@ -234,12 +237,12 @@ Genre: ${selectedGenre} | Era: ${selectedDecade}`;
                     <div className="space-y-3">
                       <Label className="text-white font-medium">Genre</Label>
                       <Select value={genre} onValueChange={setGenre}>
-                        <SelectTrigger className="glass-input-3d text-white">
-                          <SelectValue placeholder="Select genre" className="text-white/50" />
+                        <SelectTrigger className="glass-input-3d text-white bg-white/10 backdrop-blur-md border-white/20">
+                          <SelectValue placeholder="Select genre" />
                         </SelectTrigger>
-                        <SelectContent className="glass-dropdown-3d">
+                        <SelectContent className="bg-slate-900/95 backdrop-blur-xl border-white/20 rounded-2xl">
                           {genres.map((g) => (
-                            <SelectItem key={g} value={g} className="text-white">{g}</SelectItem>
+                            <SelectItem key={g} value={g} className="text-white hover:bg-white/10 focus:bg-white/10">{g}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -248,12 +251,12 @@ Genre: ${selectedGenre} | Era: ${selectedDecade}`;
                     <div className="space-y-3">
                       <Label className="text-white font-medium">Decade</Label>
                       <Select value={decade} onValueChange={setDecade}>
-                        <SelectTrigger className="glass-input-3d text-white">
-                          <SelectValue placeholder="Select decade" className="text-white/50" />
+                        <SelectTrigger className="glass-input-3d text-white bg-white/10 backdrop-blur-md border-white/20">
+                          <SelectValue placeholder="Select decade" />
                         </SelectTrigger>
-                        <SelectContent className="glass-dropdown-3d">
+                        <SelectContent className="bg-slate-900/95 backdrop-blur-xl border-white/20 rounded-2xl">
                           {decades.map((d) => (
-                            <SelectItem key={d} value={d} className="text-white">{d}</SelectItem>
+                            <SelectItem key={d} value={d} className="text-white hover:bg-white/10 focus:bg-white/10">{d}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
