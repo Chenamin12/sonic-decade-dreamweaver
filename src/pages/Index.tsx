@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Music, Headphones } from "lucide-react";
+import { Music, Headphones, Sparkles } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import SongGenerator from "@/components/SongGenerator";
 
@@ -28,7 +27,6 @@ const Index = () => {
   ];
 
   const extractKeywords = (text: string) => {
-    // Simple keyword extraction - remove common words and split by spaces
     const commonWords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'is', 'was', 'are', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should'];
     const words = text.toLowerCase().split(/\s+/).filter(word => 
       word.length > 2 && !commonWords.includes(word) && /^[a-zA-Z]+$/.test(word)
@@ -58,7 +56,6 @@ const Index = () => {
 
     setIsGenerating(true);
     
-    // Simulate song generation with a more sophisticated approach
     setTimeout(() => {
       const song = generateSongContent(keywords || prompt, genre, decade);
       setGeneratedSong(song);
@@ -71,7 +68,6 @@ const Index = () => {
   };
 
   const generateSongContent = (keywordText: string, selectedGenre: string, selectedDecade: string) => {
-    // Enhanced song generation logic based on genre and decade
     const keywordList = keywordText.split(",").map(k => k.trim()).filter(k => k);
     
     const genreStyles = {
@@ -159,109 +155,157 @@ Genre: ${selectedGenre} | Era: ${selectedDecade}`;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 p-4">
-      <div className="max-w-4xl mx-auto space-y-8">
-        <div className="text-center space-y-4">
-          <div className="flex items-center justify-center gap-2">
-            <Music className="h-8 w-8 text-purple-600" />
-            <h1 className="text-4xl font-bold text-gray-900">AI Song Generator</h1>
-            <Headphones className="h-8 w-8 text-purple-600" />
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-amber-50/80 via-orange-50/60 to-red-50/40">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-100/20 via-transparent to-blue-100/20"></div>
+      <div className="absolute top-20 left-20 w-64 h-64 bg-purple-200/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-20 w-80 h-80 bg-blue-200/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-pink-200/10 rounded-full blur-2xl"></div>
+      
+      <div className="relative z-10 p-6 md:p-8">
+        <div className="max-w-6xl mx-auto space-y-8">
+          {/* Header */}
+          <div className="text-center space-y-6 mb-12">
+            <div className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-md rounded-full border border-white/30 shadow-lg">
+              <Music className="h-6 w-6 text-purple-600" />
+              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                AI Song Generator
+              </h1>
+              <Headphones className="h-6 w-6 text-blue-600" />
+            </div>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              Create unique songs with AI-powered generation based on your prompts, keywords, genre, and era
+            </p>
           </div>
-          <p className="text-xl text-gray-600">Create unique songs based on your prompts, keywords, genre, and era</p>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Card>
-            <CardHeader>
-              <CardTitle>Song Input</CardTitle>
-              <CardDescription>Describe your song concept and preferences</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="prompt">Song Prompt</Label>
-                <Textarea
-                  id="prompt"
-                  placeholder="Describe your song concept, story, or theme..."
-                  value={prompt}
-                  onChange={(e) => handlePromptChange(e.target.value)}
-                  rows={3}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="keywords">Extracted Keywords</Label>
-                <Input
-                  id="keywords"
-                  placeholder="Keywords will be extracted automatically..."
-                  value={keywords}
-                  onChange={(e) => setKeywords(e.target.value)}
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label>Genre</Label>
-                  <Select value={genre} onValueChange={setGenre}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select genre" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {genres.map((g) => (
-                        <SelectItem key={g} value={g}>{g}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            {/* Input Card */}
+            <div className="glass-card group">
+              <div className="p-6 md:p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg">
+                    <Sparkles className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-semibold text-gray-900">Song Input</h2>
+                    <p className="text-sm text-gray-600">Describe your song concept and preferences</p>
+                  </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label>Decade</Label>
-                  <Select value={decade} onValueChange={setDecade}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select decade" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {decades.map((d) => (
-                        <SelectItem key={d} value={d}>{d}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="prompt" className="text-sm font-medium text-gray-700">Song Prompt</Label>
+                    <Textarea
+                      id="prompt"
+                      placeholder="Describe your song concept, story, or theme..."
+                      value={prompt}
+                      onChange={(e) => handlePromptChange(e.target.value)}
+                      rows={3}
+                      className="glass-input"
+                    />
+                  </div>
 
-              <Button 
-                onClick={generateSong} 
-                disabled={isGenerating} 
-                className="w-full"
-                size="lg"
-              >
-                {isGenerating ? "Generating Song..." : "Generate Song"}
-              </Button>
-            </CardContent>
-          </Card>
+                  <div className="space-y-2">
+                    <Label htmlFor="keywords" className="text-sm font-medium text-gray-700">Extracted Keywords</Label>
+                    <Input
+                      id="keywords"
+                      placeholder="Keywords will be extracted automatically..."
+                      value={keywords}
+                      onChange={(e) => setKeywords(e.target.value)}
+                      className="glass-input"
+                    />
+                  </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Generated Song</CardTitle>
-              <CardDescription>Your AI-generated song will appear here</CardDescription>
-            </CardHeader>
-            <CardContent>
-              {generatedSong ? (
-                <div className="space-y-4">
-                  <pre className="whitespace-pre-wrap text-sm bg-gray-50 p-4 rounded-lg border overflow-auto max-h-96">
-                    {generatedSong}
-                  </pre>
-                  <Button variant="outline" className="w-full">
-                    Share Song
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label className="text-sm font-medium text-gray-700">Genre</Label>
+                      <Select value={genre} onValueChange={setGenre}>
+                        <SelectTrigger className="glass-input">
+                          <SelectValue placeholder="Select genre" />
+                        </SelectTrigger>
+                        <SelectContent className="glass-dropdown">
+                          {genres.map((g) => (
+                            <SelectItem key={g} value={g}>{g}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="text-sm font-medium text-gray-700">Decade</Label>
+                      <Select value={decade} onValueChange={setDecade}>
+                        <SelectTrigger className="glass-input">
+                          <SelectValue placeholder="Select decade" />
+                        </SelectTrigger>
+                        <SelectContent className="glass-dropdown">
+                          {decades.map((d) => (
+                            <SelectItem key={d} value={d}>{d}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <Button 
+                    onClick={generateSong} 
+                    disabled={isGenerating} 
+                    className="w-full glass-button"
+                    size="lg"
+                  >
+                    {isGenerating ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        Generating Song...
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2">
+                        <Music className="h-4 w-4" />
+                        Generate Song
+                      </div>
+                    )}
                   </Button>
                 </div>
-              ) : (
-                <div className="text-center text-gray-500 py-8">
-                  <Music className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                  <p>Your generated song will appear here...</p>
+              </div>
+            </div>
+
+            {/* Output Card */}
+            <div className="glass-card group">
+              <div className="p-6 md:p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg">
+                    <Music className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-semibold text-gray-900">Generated Song</h2>
+                    <p className="text-sm text-gray-600">Your AI-generated song will appear here</p>
+                  </div>
                 </div>
-              )}
-            </CardContent>
-          </Card>
+
+                {generatedSong ? (
+                  <div className="space-y-4">
+                    <div className="glass-content">
+                      <pre className="whitespace-pre-wrap text-sm text-gray-800 leading-relaxed">
+                        {generatedSong}
+                      </pre>
+                    </div>
+                    <Button variant="outline" className="w-full glass-button-secondary">
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="h-4 w-4" />
+                        Share Song
+                      </div>
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="glass-content text-center py-16">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-100 to-blue-100 rounded-full flex items-center justify-center">
+                      <Music className="h-8 w-8 text-purple-400" />
+                    </div>
+                    <p className="text-gray-500">Your generated song will appear here...</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

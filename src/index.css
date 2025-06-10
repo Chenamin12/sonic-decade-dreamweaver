@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -99,5 +100,69 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Cards */
+  .glass-card {
+    @apply relative bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 shadow-xl;
+    @apply hover:bg-white/25 hover:shadow-2xl transition-all duration-300;
+    @apply before:content-[''] before:absolute before:inset-0 before:rounded-2xl;
+    @apply before:bg-gradient-to-br before:from-white/10 before:to-transparent before:pointer-events-none;
+  }
+
+  /* Glass Input Fields */
+  .glass-input {
+    @apply bg-white/30 backdrop-blur-sm border border-white/40 rounded-xl;
+    @apply focus:bg-white/40 focus:border-white/60 focus:ring-2 focus:ring-white/20;
+    @apply placeholder:text-gray-500 text-gray-800;
+    @apply transition-all duration-200;
+  }
+
+  /* Glass Buttons */
+  .glass-button {
+    @apply bg-gradient-to-r from-purple-500/80 to-blue-500/80 backdrop-blur-sm;
+    @apply border border-white/30 text-white font-medium;
+    @apply hover:from-purple-600/90 hover:to-blue-600/90 hover:shadow-lg;
+    @apply hover:scale-105 active:scale-95;
+    @apply transition-all duration-200;
+  }
+
+  .glass-button-secondary {
+    @apply bg-white/20 backdrop-blur-sm border border-white/40 text-gray-700;
+    @apply hover:bg-white/30 hover:shadow-lg;
+    @apply hover:scale-105 active:scale-95;
+    @apply transition-all duration-200;
+  }
+
+  /* Glass Content Areas */
+  .glass-content {
+    @apply bg-white/30 backdrop-blur-sm rounded-xl border border-white/40;
+    @apply p-4 max-h-96 overflow-auto;
+    @apply scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent;
+  }
+
+  /* Glass Dropdown */
+  .glass-dropdown {
+    @apply bg-white/90 backdrop-blur-md border border-white/40 rounded-xl shadow-xl;
+  }
+
+  /* Custom Scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  
+  .scrollbar-thumb-white\/20::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+  }
+  
+  .scrollbar-track-transparent::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 8px;
   }
 }
